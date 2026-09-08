@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | Patient List</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8fa;
+            color: #263b49;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            border-bottom: 1px solid #e3ecef;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            background: #079bd2;
+            color: white;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            color: #153e52;
+            font-size: 21px;
+        }
+
+        .logo span {
+            color: #079bd2;
+        }
+
+        .dashboard-btn {
+            text-decoration: none;
+
+            color: #087fa8;
+
+            background: #eaf7fb;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .dashboard-btn:hover {
+            background: #d9f1f8;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            width: 90%;
+            max-width: 1200px;
+
+            margin: 40px auto;
+        }
+
+
+        /* ================= PAGE HEADING ================= */
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h1 {
+            color: #153e52;
+
+            font-size: 28px;
+
+            margin-bottom: 6px;
+        }
+
+        .page-heading p {
+            color: #84959e;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= SUMMARY ================= */
+
+        .summary-row {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-bottom: 22px;
+        }
+
+        .summary-card {
+            background: white;
+
+            border: 1px solid #e3ecef;
+
+            border-radius: 11px;
+
+            padding: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+        .summary-icon {
+            width: 45px;
+            height: 45px;
+
+            background: #e7f6fb;
+
+            color: #087fa8;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+        }
+
+        .summary-card span {
+            display: block;
+
+            color: #8b9ba3;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            margin-bottom: 4px;
+        }
+
+        .summary-card strong {
+            color: #153e52;
+
+            font-size: 15px;
+        }
+
+
+        /* ================= TABLE CARD ================= */
+
+        .table-card {
+            background: white;
+
+            border: 1px solid #e3ecef;
+
+            border-radius: 13px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px
+                rgba(30,70,90,0.05);
+        }
+
+
+        /* ================= TABLE ================= */
+
+        .patient-table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        .patient-table thead {
+            background: #f4fafc;
+        }
+
+        .patient-table th {
+            text-align: left;
+
+            color: #617984;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+
+            padding: 16px 18px;
+
+            border-bottom: 1px solid #e3ecef;
+        }
+
+        .patient-table td {
+            padding: 17px 18px;
+
+            border-bottom: 1px solid #edf2f4;
+
+            color: #526a75;
+
+            font-size: 13px;
+
+            vertical-align: middle;
+        }
+
+        .patient-table tbody tr {
+            transition: 0.2s;
+        }
+
+        .patient-table tbody tr:hover {
+            background: #f9fcfd;
+        }
+
+        .patient-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        /* ================= PATIENT NAME ================= */
+
+        .patient-name {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            color: #183f52;
+
+            font-weight: 600;
+        }
+
+        .patient-avatar {
+            width: 38px;
+            height: 38px;
+
+            background: #e7f6fb;
+
+            color: #087fa8;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
+        }
+
+
+        /* ================= AGE ================= */
+
+        .age {
+            display: inline-block;
+
+            background: #f1f6f8;
+
+            color: #526a75;
+
+            padding: 5px 9px;
+
+            border-radius: 6px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        /* ================= CONTACT ================= */
+
+        .email {
+            color: #087fa8;
+        }
+
+        .phone {
+            color: #526a75;
+        }
+
+
+        /* ================= ADDRESS ================= */
+
+        .address {
+            max-width: 220px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= EMPTY ================= */
+
+        .empty {
+            text-align: center;
+
+            padding: 65px 20px;
+
+            color: #84959e;
+        }
+
+        .empty-icon {
+            width: 65px;
+            height: 65px;
+
+            background: #eaf7fb;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 15px;
+
+            font-size: 28px;
+        }
+
+        .empty h3 {
+            color: #38535f;
+
+            font-size: 18px;
+
+            margin-bottom: 7px;
+        }
+
+        .empty p {
+            font-size: 13px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .main {
+                width: 94%;
+            }
+
+            .summary-row {
+                grid-template-columns: 1fr;
+            }
+
+            .table-card {
+                overflow-x: auto;
+            }
+
+            .patient-table {
+                min-width: 900px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .logo h2 {
+                font-size: 19px;
+            }
+
+            .main {
+                margin: 25px auto;
+            }
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+        class="dashboard-btn">
+
+        ← Dashboard
+
+    </a>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- PAGE HEADING -->
+
+    <div class="page-heading">
+
+        <h1>
+            Patient Management
+        </h1>
+
+        <p>
+            View and manage registered DentalCare patients
+        </p>
+
+    </div>
+
+
+
+    <!-- SUMMARY -->
+
+    <div class="summary-row">
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                👥
+            </div>
+
+            <div>
+
+                <span>
+                    PATIENTS
+                </span>
+
+                <strong>
+                    Registered Patients
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🏥
+            </div>
+
+            <div>
+
+                <span>
+                    CLINIC
+                </span>
+
+                <strong>
+                    DentalCare
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🩺
+            </div>
+
+            <div>
+
+                <span>
+                    PATIENT CARE
+                </span>
+
+                <strong>
+                    Patient Records
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= PATIENT TABLE ================= -->
+
+    <div class="table-card">
+
+
+        {% if patients %}
+
+
+        <table class="patient-table">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Patient
+                    </th>
+
+                    <th>
+                        Email
+                    </th>
+
+                    <th>
+                        Phone
+                    </th>
+
+                    <th>
+                        Age
+                    </th>
+
+                    <th>
+                        Address
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                {% for p in patients %}
+
+
+                <tr>
+
+
+                    <!-- NAME -->
+
+                    <td>
+
+                        <div class="patient-name">
+
+                            <div class="patient-avatar">
+                                👤
+                            </div>
+
+                            {{ p.name }}
+
+                        </div>
+
+                    </td>
+
+
+
+                    <!-- EMAIL -->
+
+                    <td>
+
+                        <span class="email">
+                            {{ p.email }}
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- PHONE -->
+
+                    <td>
+
+                        <span class="phone">
+                            {{ p.phone }}
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- AGE -->
+
+                    <td>
+
+                        <span class="age">
+
+                            {{ p.age }} years
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- ADDRESS -->
+
+                    <td>
+
+                        <div class="address">
+
+                            {{ p.address }}
+
+                        </div>
+
+                    </td>
+
+
+                </tr>
+
+
+                {% endfor %}
+
+
+            </tbody>
+
+
+        </table>
+
+
+        {% else %}
+
+
+        <!-- EMPTY STATE -->
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                👤
+            </div>
+
+            <h3>
+                No Patients Found
+            </h3>
+
+            <p>
+                There are no registered patients yet.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

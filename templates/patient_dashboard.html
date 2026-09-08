@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | Patient Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4faff;
+            color: #263b49;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 75px;
+            background: white;
+            padding: 0 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            background: #079bd8;
+            color: white;
+
+            border-radius: 12px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            color: #173f56;
+            font-size: 22px;
+        }
+
+        .logo span {
+            color: #079bd8;
+        }
+
+        .logout {
+            text-decoration: none;
+
+            color: #e53935;
+
+            border: 1px solid #ffcdd2;
+
+            padding: 9px 20px;
+
+            border-radius: 20px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .logout:hover {
+            background: #ffebee;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            width: 86%;
+            max-width: 1200px;
+
+            margin: 40px auto;
+        }
+
+
+        /* ================= WELCOME ================= */
+
+        .welcome {
+            background:
+                linear-gradient(
+                    120deg,
+                    #079bd8,
+                    #087eb5
+                );
+
+            color: white;
+
+            border-radius: 22px;
+
+            padding: 35px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow:
+                0 12px 30px
+                rgba(7,155,216,0.20);
+
+            margin-bottom: 35px;
+        }
+
+        .welcome-text h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text p {
+            color: #e3f7ff;
+            font-size: 15px;
+        }
+
+        .welcome-icon {
+            width: 90px;
+            height: 90px;
+
+            background: rgba(255,255,255,0.15);
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 45px;
+        }
+
+
+        /* ================= SECTION TITLE ================= */
+
+        .section-title {
+            color: #173f56;
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ================= CARDS ================= */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 30px 25px;
+
+            border: 1px solid #e4f1f7;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(0,0,0,0.09);
+        }
+
+        .card-icon {
+            width: 65px;
+            height: 65px;
+
+            background: #e4f7ff;
+
+            border-radius: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #173f56;
+
+            font-size: 19px;
+
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #78909c;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+        }
+
+        .card a {
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #079bd8;
+
+            color: white;
+
+            padding: 10px 20px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .card a:hover {
+            background: #087eb5;
+        }
+
+
+        /* ================= QUICK INFO ================= */
+
+        .info-section {
+            margin-top: 40px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 25px;
+        }
+
+        .info-box {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            border: 1px solid #e4f1f7;
+        }
+
+        .info-box h3 {
+            color: #173f56;
+
+            margin-bottom: 15px;
+        }
+
+        .info-box p {
+            color: #78909c;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            margin-top: 50px;
+
+            background: #173f56;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 22px;
+        }
+
+        footer p {
+            color: #c7dce5;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 850px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome {
+                padding: 30px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .main {
+                width: 92%;
+            }
+
+            .welcome {
+                padding: 25px;
+
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 20px;
+            }
+
+            .welcome-text h1 {
+                font-size: 25px;
+            }
+
+            .logo h2 {
+                font-size: 19px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <a
+        href="{% url 'patient_logout' %}"
+        class="logout">
+
+        Logout
+
+    </a>
+
+</nav>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- Welcome -->
+
+    <section class="welcome">
+
+        <div class="welcome-text">
+
+            <h1>
+                Welcome, {{ user.username }} 👋
+            </h1>
+
+            <p>
+                Manage your dental appointments and
+                healthcare information easily.
+            </p>
+
+        </div>
+
+
+        <div class="welcome-icon">
+            🦷
+        </div>
+
+    </section>
+
+
+
+    <!-- Dashboard -->
+
+    <h2 class="section-title">
+        Patient Services
+    </h2>
+
+
+    <div class="cards">
+
+
+        <!-- Book Appointment -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                📅
+            </div>
+
+            <h3>
+                Book Appointment
+            </h3>
+
+            <p>
+                Schedule an appointment with
+                our experienced dental doctors.
+            </p>
+
+            <a href="{% url 'book_appointment' %}">
+                Book Now →
+            </a>
+
+        </div>
+
+
+
+        <!-- My Appointments -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                🗓️
+            </div>
+
+            <h3>
+                My Appointments
+            </h3>
+
+            <p>
+                View and manage all your
+                upcoming and previous appointments.
+            </p>
+
+            <a href="{% url 'patient_my_appointments' %}">
+                View Appointments →
+            </a>
+
+        </div>
+
+
+
+        <!-- Feedback -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                ⭐
+            </div>
+
+            <h3>
+                Give Feedback
+            </h3>
+
+            <p>
+                Share your experience and help
+                us improve our dental services.
+            </p>
+
+            <a href="{% url 'give_feedback' %}">
+                Give Feedback →
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Information -->
+
+    <div class="info-section">
+
+
+        <div class="info-box">
+
+            <h3>
+                🦷 Your Dental Health Matters
+            </h3>
+
+            <p>
+                Regular dental checkups help maintain
+                healthy teeth and gums. Book your
+                appointment with our dental specialists
+                whenever you need professional care.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <h3>
+                🏥 DentalCare Hospital
+            </h3>
+
+            <p>
+                We provide modern dental treatments,
+                experienced doctors and patient-friendly
+                healthcare services in a comfortable
+                environment.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 DentalCare Hospital.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+</body>
+</html>

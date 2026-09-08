@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | Doctor Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8fa;
+            color: #263b49;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 245px;
+            height: 100vh;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            background: #123f54;
+            color: white;
+
+            padding: 25px 18px;
+
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 5px 10px 30px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 10px;
+
+            background: #0ca4d8;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: #28b9e7;
+        }
+
+        .menu-title {
+            color: #8eabb8;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 0 12px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            text-decoration: none;
+            color: #d8e8ee;
+
+            padding: 13px 12px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #1d5870;
+            color: white;
+        }
+
+        .menu-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 25px;
+            left: 18px;
+            right: 18px;
+
+            background: #eaf4f7 !important;
+            color: #d33b3b !important;
+
+            justify-content: center !important;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 245px;
+            min-height: 100vh;
+            padding: 30px 40px;
+        }
+
+
+        /* ================= TOP BAR ================= */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            color: #153e52;
+            font-size: 27px;
+        }
+
+        .topbar p {
+            color: #81939c;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .doctor-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .doctor-avatar {
+            width: 45px;
+            height: 45px;
+
+            background: #dff4fb;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+        }
+
+        .doctor-name {
+            color: #294957;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .doctor-role {
+            color: #8a9ba3;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+
+        /* ================= WELCOME ================= */
+
+        .welcome {
+            background: linear-gradient(
+                120deg,
+                #0b9ed2,
+                #087ba3
+            );
+
+            border-radius: 14px;
+
+            padding: 28px 30px;
+
+            color: white;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            font-size: 23px;
+            margin-bottom: 7px;
+        }
+
+        .welcome p {
+            color: #e0f5fb;
+            font-size: 13px;
+        }
+
+        .welcome-icon {
+            font-size: 60px;
+        }
+
+
+        /* ================= STAT CARDS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e5edf1;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 10px;
+
+            background: #e7f6fb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+        }
+
+        .stat-card h4 {
+            color: #83959e;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .stat-card h3 {
+            color: #153e52;
+            font-size: 20px;
+        }
+
+
+        /* ================= SECTION ================= */
+
+        .section-title {
+            color: #153e52;
+            font-size: 19px;
+            margin-bottom: 15px;
+        }
+
+
+        /* ================= DASHBOARD CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+
+            border: 1px solid #e5edf1;
+
+            border-radius: 12px;
+
+            padding: 23px;
+
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 22px
+                rgba(30,70,90,0.08);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+
+            border-radius: 10px;
+
+            background: #e8f7fc;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+        }
+
+        .card h3 {
+            color: #1b4255;
+            font-size: 16px;
+        }
+
+        .card p {
+            color: #84959d;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            margin-bottom: 18px;
+        }
+
+        .card-btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: #087fa7;
+
+            background: #eaf7fb;
+
+            padding: 9px 16px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .card-btn:hover {
+            background: #d9f1f8;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
+            }
+
+            .logo h2,
+            .menu-title,
+            .menu a span:not(.menu-icon) {
+                display: none;
+            }
+
+            .logo {
+                justify-content: center;
+                padding: 5px 0 30px;
+            }
+
+            .menu a {
+                justify-content: center;
+            }
+
+            .logout {
+                left: 10px;
+                right: 10px;
+            }
+
+            .main {
+                margin-left: 70px;
+                padding: 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .main {
+                padding: 20px 15px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+            }
+
+            .doctor-info {
+                display: none;
+            }
+
+            .welcome-icon {
+                display: none;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <div class="menu-title">
+        DOCTOR PORTAL
+    </div>
+
+
+    <nav class="menu">
+
+        <a href="{% url 'doctor_profile' %}">
+
+            <span class="menu-icon">👨‍⚕️</span>
+            <span>My Profile</span>
+
+        </a>
+
+
+        <a href="{% url 'doctor_my_appointments' %}">
+
+            <span class="menu-icon">📅</span>
+            <span>My Appointments</span>
+
+        </a>
+
+
+        <a href="{% url 'my_patients' %}">
+
+            <span class="menu-icon">👥</span>
+            <span>Patients</span>
+
+        </a>
+
+
+        <a href="{% url 'feedback_list' %}">
+
+            <span class="menu-icon">⭐</span>
+            <span>Patient Feedback</span>
+
+        </a>
+
+
+        <a
+            href="{% url 'doctor_logout' %}"
+            class="logout">
+
+            <span class="menu-icon">↪</span>
+            <span>Logout</span>
+
+        </a>
+
+    </nav>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>
+                Doctor Dashboard
+            </h1>
+
+            <p>
+                Manage your appointments and patients
+            </p>
+
+        </div>
+
+
+        <div class="doctor-info">
+
+            <div class="doctor-avatar">
+                👨‍⚕️
+            </div>
+
+            <div>
+
+                <div class="doctor-name">
+                    Dr. {{ user.username }}
+                </div>
+
+                <div class="doctor-role">
+                    Dental Specialist
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <div>
+
+            <h2>
+                Welcome Dr. {{ user.username }} 👋
+            </h2>
+
+            <p>
+                Here's an overview of your DentalCare practice.
+            </p>
+
+        </div>
+
+        <div class="welcome-icon">
+            🦷
+        </div>
+
+    </div>
+
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📅
+            </div>
+
+            <div>
+
+                <h4>
+                    APPOINTMENTS
+                </h4>
+
+                <h3>
+                    My Schedule
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div>
+
+                <h4>
+                    PATIENTS
+                </h4>
+
+                <h3>
+                    My Patients
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⭐
+            </div>
+
+            <div>
+
+                <h4>
+                    FEEDBACK
+                </h4>
+
+                <h3>
+                    Patient Reviews
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUICK ACCESS -->
+
+    <h2 class="section-title">
+        Quick Access
+    </h2>
+
+
+    <div class="cards">
+
+
+        <!-- Profile -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="card-icon">
+                    👨‍⚕️
+                </div>
+
+                <h3>
+                    My Profile
+                </h3>
+
+            </div>
+
+            <p>
+                View and manage your doctor
+                profile and professional information.
+            </p>
+
+            <a
+                href="{% url 'doctor_profile' %}"
+                class="card-btn">
+
+                View Profile →
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Appointments -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="card-icon">
+                    📅
+                </div>
+
+                <h3>
+                    My Appointments
+                </h3>
+
+            </div>
+
+            <p>
+                View your scheduled appointments
+                and manage patient visits.
+            </p>
+
+            <a
+                href="{% url 'doctor_my_appointments' %}"
+                class="card-btn">
+
+                View Appointments →
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Patients -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="card-icon">
+                    👥
+                </div>
+
+                <h3>
+                    Patients
+                </h3>
+
+            </div>
+
+            <p>
+                View the patients assigned to you
+                and access their information.
+            </p>
+
+            <a
+                href="{% url 'my_patients' %}"
+                class="card-btn">
+
+                View Patients →
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Feedback -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="card-icon">
+                    ⭐
+                </div>
+
+                <h3>
+                    Patient Feedback
+                </h3>
+
+            </div>
+
+            <p>
+                Review feedback submitted by
+                your patients.
+            </p>
+
+            <a
+                href="{% url 'feedback_list' %}"
+                class="card-btn">
+
+                View Feedback →
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

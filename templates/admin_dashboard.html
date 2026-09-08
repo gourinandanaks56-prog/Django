@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | Admin Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8fa;
+            color: #263b49;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 245px;
+            height: 100vh;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            background: #123f54;
+
+            padding: 25px 18px;
+
+            color: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 5px 10px 30px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            background: #0ca4d8;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: #28b9e7;
+        }
+
+        .menu-title {
+            color: #8eabb8;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            padding: 0 12px;
+
+            margin-bottom: 10px;
+        }
+
+        .menu a {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            text-decoration: none;
+
+            color: #d8e8ee;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #1d5870;
+
+            color: white;
+        }
+
+        .menu-icon {
+            width: 22px;
+
+            text-align: center;
+
+            font-size: 17px;
+        }
+
+        .logout {
+            position: absolute;
+
+            left: 18px;
+            right: 18px;
+            bottom: 25px;
+
+            background: #eaf4f7 !important;
+
+            color: #d13b3b !important;
+
+            justify-content: center;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 245px;
+
+            min-height: 100vh;
+
+            padding: 30px 40px;
+        }
+
+
+        /* ================= TOP ================= */
+
+        .topbar {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 28px;
+        }
+
+        .topbar h1 {
+            color: #153e52;
+
+            font-size: 27px;
+
+            margin-bottom: 5px;
+        }
+
+        .topbar p {
+            color: #84969f;
+
+            font-size: 13px;
+        }
+
+        .admin-profile {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .admin-icon {
+            width: 43px;
+            height: 43px;
+
+            background: #e3f5fa;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+        }
+
+        .admin-text strong {
+            display: block;
+
+            color: #294b5a;
+
+            font-size: 13px;
+        }
+
+        .admin-text span {
+            color: #8b9ca4;
+
+            font-size: 11px;
+        }
+
+
+        /* ================= WELCOME ================= */
+
+        .welcome {
+            background: linear-gradient(
+                120deg,
+                #0b9ed2,
+                #087ba3
+            );
+
+            border-radius: 14px;
+
+            padding: 27px 30px;
+
+            color: white;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            font-size: 23px;
+
+            margin-bottom: 6px;
+        }
+
+        .welcome p {
+            color: #ddf4fa;
+
+            font-size: 13px;
+        }
+
+        .welcome-icon {
+            font-size: 55px;
+        }
+
+
+        /* ================= STAT CARDS ================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 16px;
+
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e3ecef;
+
+            border-radius: 11px;
+
+            padding: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+
+            background: #e7f6fb;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+        }
+
+        .stat-card span {
+            display: block;
+
+            color: #8b9ba3;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            margin-bottom: 5px;
+        }
+
+        .stat-card h3 {
+            color: #173f52;
+
+            font-size: 17px;
+        }
+
+
+        /* ================= SECTION ================= */
+
+        .section-title {
+            color: #153e52;
+
+            font-size: 19px;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* ================= MANAGEMENT CARDS ================= */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 17px;
+        }
+
+        .card {
+            background: white;
+
+            border: 1px solid #e3ecef;
+
+            border-radius: 12px;
+
+            padding: 22px;
+
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 22px
+                rgba(30,70,90,0.08);
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+
+            background: #e8f7fc;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #1b4255;
+
+            font-size: 16px;
+
+            margin-bottom: 7px;
+        }
+
+        .card p {
+            color: #83949d;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            min-height: 38px;
+
+            margin-bottom: 17px;
+        }
+
+        .card-btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #eaf7fb;
+
+            color: #087fa7;
+
+            padding: 8px 14px;
+
+            border-radius: 6px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+        .card-btn:hover {
+            background: #d9f1f8;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1050px) {
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .cards {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+                width: 70px;
+
+                padding: 20px 10px;
+            }
+
+            .logo h2,
+            .menu-title,
+            .menu a span:not(.menu-icon) {
+                display: none;
+            }
+
+            .logo {
+                justify-content: center;
+
+                padding: 5px 0 30px;
+            }
+
+            .menu a {
+                justify-content: center;
+            }
+
+            .logout {
+                left: 10px;
+                right: 10px;
+            }
+
+            .main {
+                margin-left: 70px;
+
+                padding: 25px;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .main {
+                padding: 20px 15px;
+            }
+
+            .admin-profile {
+                display: none;
+            }
+
+            .welcome-icon {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <div class="menu-title">
+        ADMIN PORTAL
+    </div>
+
+
+    <nav class="menu">
+
+
+        <a href="{% url 'patient_list' %}">
+
+            <span class="menu-icon">👥</span>
+
+            <span>Patients</span>
+
+        </a>
+
+
+        <a href="{% url 'doctor_list' %}">
+
+            <span class="menu-icon">👨‍⚕️</span>
+
+            <span>Doctors</span>
+
+        </a>
+
+
+        <a href="{% url 'appointment_list' %}">
+
+            <span class="menu-icon">📅</span>
+
+            <span>Appointments</span>
+
+        </a>
+
+
+        <a href="{% url 'service_list' %}">
+
+            <span class="menu-icon">🦷</span>
+
+            <span>Services</span>
+
+        </a>
+
+
+        <a href="{% url 'feedback_list' %}">
+
+            <span class="menu-icon">⭐</span>
+
+            <span>Feedback</span>
+
+        </a>
+
+
+        <a href="{% url 'reports' %}">
+
+            <span class="menu-icon">📊</span>
+
+            <span>Reports</span>
+
+        </a>
+
+
+        <a
+            href="/logout/"
+            class="logout">
+
+            <span class="menu-icon">↪</span>
+
+            <span>Logout</span>
+
+        </a>
+
+
+    </nav>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Manage your DentalCare clinic
+            </p>
+
+        </div>
+
+
+        <div class="admin-profile">
+
+            <div class="admin-icon">
+                🛡️
+            </div>
+
+            <div class="admin-text">
+
+                <strong>
+                    Admin
+                </strong>
+
+                <span>
+                    Clinic Administrator
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <div>
+
+            <h2>
+                Welcome Admin 👋
+            </h2>
+
+            <p>
+                Here's your DentalCare clinic management overview.
+            </p>
+
+        </div>
+
+        <div class="welcome-icon">
+            🏥
+        </div>
+
+    </div>
+
+
+
+    <!-- STAT CARDS -->
+
+    <div class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div>
+
+                <span>
+                    MANAGEMENT
+                </span>
+
+                <h3>
+                    Patients
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👨‍⚕️
+            </div>
+
+            <div>
+
+                <span>
+                    MANAGEMENT
+                </span>
+
+                <h3>
+                    Doctors
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📅
+            </div>
+
+            <div>
+
+                <span>
+                    MANAGEMENT
+                </span>
+
+                <h3>
+                    Appointments
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📊
+            </div>
+
+            <div>
+
+                <span>
+                    ANALYTICS
+                </span>
+
+                <h3>
+                    Reports
+                </h3>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- MANAGEMENT -->
+
+    <h2 class="section-title">
+        Clinic Management
+    </h2>
+
+
+    <div class="cards">
+
+
+        <!-- Patients -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                👥
+            </div>
+
+            <h3>
+                Manage Patients
+            </h3>
+
+            <p>
+                View, manage and maintain registered patient information.
+            </p>
+
+            <a
+                href="{% url 'patient_list' %}"
+                class="card-btn">
+
+                View Patients →
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Doctors -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                👨‍⚕️
+            </div>
+
+            <h3>
+                Manage Doctors
+            </h3>
+
+            <p>
+                Manage doctors and their professional information.
+            </p>
+
+            <a
+                href="{% url 'doctor_list' %}"
+                class="card-btn">
+
+                View Doctors →
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Appointments -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                📅
+            </div>
+
+            <h3>
+                Appointments
+            </h3>
+
+            <p>
+                Monitor and manage all clinic appointments.
+            </p>
+
+            <a
+                href="{% url 'appointment_list' %}"
+                class="card-btn">
+
+                View Appointments →
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Services -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                🦷
+            </div>
+
+            <h3>
+                Dental Services
+            </h3>
+
+            <p>
+                Add and manage the dental services offered by the clinic.
+            </p>
+
+            <a
+                href="{% url 'service_list' %}"
+                class="card-btn">
+
+                Manage Services →
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Feedback -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                ⭐
+            </div>
+
+            <h3>
+                Patient Feedback
+            </h3>
+
+            <p>
+                Review feedback and experiences shared by patients.
+            </p>
+
+            <a
+                href="{% url 'feedback_list' %}"
+                class="card-btn">
+
+                View Feedback →
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Reports -->
+
+        <div class="card">
+
+            <div class="card-icon">
+                📊
+            </div>
+
+            <h3>
+                Reports
+            </h3>
+
+            <p>
+                View clinic statistics and management reports.
+            </p>
+
+            <a
+                href="{% url 'reports' %}"
+                class="card-btn">
+
+                View Reports →
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

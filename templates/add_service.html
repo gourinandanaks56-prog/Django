@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | Add Service</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eefaff,
+                    #f7fbfc
+                );
+
+            color: #263b49;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.06);
+        }
+
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            background: #079bd2;
+
+            color: white;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+
+            font-weight: bold;
+        }
+
+
+        .logo h2 {
+            color: #153e52;
+
+            font-size: 21px;
+        }
+
+
+        .logo span {
+            color: #079bd2;
+        }
+
+
+        .dashboard-btn {
+            text-decoration: none;
+
+            color: #087fa8;
+
+            background: #eaf7fb;
+
+            padding: 10px 18px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .dashboard-btn:hover {
+            background: #d9f1f8;
+        }
+
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            min-height:
+                calc(100vh - 72px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 45px 20px;
+        }
+
+
+
+        /* ================= CARD ================= */
+
+        .service-card {
+            width: 850px;
+
+            background: white;
+
+            border-radius: 22px;
+
+            display: flex;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 45px
+                rgba(20,80,105,0.12);
+        }
+
+
+
+        /* ================= LEFT ================= */
+
+        .service-info {
+            width: 38%;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #079bd2,
+                    #087cae
+                );
+
+            color: white;
+
+            padding: 45px 35px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .service-icon {
+            width: 75px;
+            height: 75px;
+
+            background: white;
+
+            color: #079bd2;
+
+            border-radius: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 36px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .service-info h1 {
+            font-size: 29px;
+
+            margin-bottom: 14px;
+        }
+
+
+        .service-info > p {
+            color: #e2f7ff;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+
+        .features p {
+            font-size: 13px;
+
+            margin: 13px 0;
+
+            color: white;
+        }
+
+
+
+        /* ================= RIGHT ================= */
+
+        .service-form {
+            width: 62%;
+
+            padding: 45px 50px;
+        }
+
+
+        .service-form h2 {
+            color: #153e52;
+
+            font-size: 27px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .subtitle {
+            color: #84959e;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+
+        /* ================= DJANGO FORM ================= */
+
+        form p {
+            margin-bottom: 18px;
+        }
+
+
+        form label {
+            display: block;
+
+            color: #37474f;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #d6e5ea;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            background: #fbfdfe;
+
+            color: #37474f;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+
+            border-color: #079bd2;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(7,155,210,0.10);
+        }
+
+
+        form textarea {
+            min-height: 100px;
+
+            resize: vertical;
+        }
+
+
+
+        /* ================= ERRORS ================= */
+
+        .errorlist {
+            list-style: none;
+
+            color: #d32f2f;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+
+
+        /* ================= SAVE BUTTON ================= */
+
+        .save-btn {
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #079bd2,
+                    #087cae
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+            transition: 0.25s;
+        }
+
+
+        .save-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(7,155,210,0.25);
+        }
+
+
+
+        /* ================= BACK ================= */
+
+        .back-link {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #087fa8;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            .service-card {
+                width: 95%;
+            }
+
+            .service-info {
+                display: none;
+            }
+
+            .service-form {
+                width: 100%;
+
+                padding: 40px 35px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .logo h2 {
+                font-size: 18px;
+            }
+
+            .service-form {
+                padding: 30px 22px;
+            }
+
+            .service-form h2 {
+                font-size: 23px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <a
+        href="{% url 'service_list' %}"
+        class="dashboard-btn">
+
+        ← Services
+
+    </a>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <div class="service-card">
+
+
+        <!-- LEFT INFORMATION -->
+
+        <div class="service-info">
+
+
+            <div class="service-icon">
+                🦷
+            </div>
+
+
+            <h1>
+                Add Dental Service
+            </h1>
+
+
+            <p>
+                Add a new dental treatment or service
+                to the DentalCare clinic service list.
+            </p>
+
+
+            <div class="features">
+
+                <p>
+                    ✓ Manage Dental Treatments
+                </p>
+
+                <p>
+                    ✓ Add Service Description
+                </p>
+
+                <p>
+                    ✓ Set Treatment Price
+                </p>
+
+                <p>
+                    ✓ Keep Services Updated
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <div class="service-form">
+
+
+            <h2>
+                Service Details
+            </h2>
+
+
+            <p class="subtitle">
+                Enter the details of the new dental service.
+            </p>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    ✓ Save Service
+
+                </button>
+
+            </form>
+
+
+            <a
+                href="{% url 'service_list' %}"
+                class="back-link">
+
+                ← View All Services
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

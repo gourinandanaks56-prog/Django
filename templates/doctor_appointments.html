@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | My Appointments</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f9fb;
+            color: #263b49;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            background: #079bd2;
+            color: white;
+
+            border-radius: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            color: #153e52;
+            font-size: 21px;
+        }
+
+        .logo span {
+            color: #079bd2;
+        }
+
+        .dashboard-btn {
+            text-decoration: none;
+
+            color: #087fa8;
+            background: #eaf7fb;
+
+            padding: 10px 18px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .dashboard-btn:hover {
+            background: #d9f1f8;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            width: 90%;
+            max-width: 1100px;
+
+            margin: 40px auto;
+        }
+
+
+        /* ================= TITLE ================= */
+
+        .page-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 28px;
+        }
+
+        .page-header h1 {
+            color: #153e52;
+
+            font-size: 29px;
+
+            margin-bottom: 6px;
+        }
+
+        .page-header p {
+            color: #84959e;
+
+            font-size: 13px;
+        }
+
+        .calendar-icon {
+            width: 52px;
+            height: 52px;
+
+            background: #e8f7fb;
+            color: #087fa8;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+
+        /* ================= APPOINTMENT GRID ================= */
+
+        .appointment-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .appointment-card {
+            background: white;
+
+            border: 1px solid #e1eaed;
+
+            border-radius: 15px;
+
+            padding: 23px;
+
+            box-shadow:
+                0 6px 20px rgba(30,70,90,0.06);
+
+            transition: 0.25s;
+        }
+
+        .appointment-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 28px rgba(30,70,90,0.10);
+        }
+
+
+        /* ================= CARD TOP ================= */
+
+        .card-top {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+        .patient-box {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .patient-icon {
+            width: 43px;
+            height: 43px;
+
+            background: #e8f7fb;
+            color: #087fa8;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+        }
+
+        .patient-info strong {
+            display: block;
+
+            color: #153e52;
+
+            font-size: 14px;
+
+            margin-bottom: 3px;
+        }
+
+        .patient-info span {
+            color: #91a0a7;
+
+            font-size: 10px;
+        }
+
+
+        /* ================= STATUS ================= */
+
+        .status {
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+        .pending {
+            background: #fff6dc;
+            color: #a77700;
+        }
+
+        .approved {
+            background: #e9f8ef;
+            color: #278048;
+        }
+
+        .rejected {
+            background: #fff0f0;
+            color: #c13b3b;
+        }
+
+
+        /* ================= DETAILS ================= */
+
+        .details {
+            border-top: 1px solid #edf2f4;
+
+            padding-top: 15px;
+        }
+
+        .detail-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 9px 0;
+        }
+
+        .label {
+            color: #8a9aa1;
+
+            font-size: 12px;
+        }
+
+        .value {
+            color: #385461;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            text-align: right;
+        }
+
+        .doctor-value {
+            color: #087fa8;
+        }
+
+
+        /* ================= ACTIONS ================= */
+
+        .actions {
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 18px;
+
+            padding-top: 17px;
+
+            border-top: 1px solid #edf2f4;
+        }
+
+        .approve-btn,
+        .reject-btn {
+
+            flex: 1;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            padding: 10px;
+
+            border-radius: 7px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+        .approve-btn {
+            background: #e9f8ef;
+
+            color: #278048;
+        }
+
+        .approve-btn:hover {
+            background: #d3f1dd;
+        }
+
+        .reject-btn {
+            background: #fff0f0;
+
+            color: #c13b3b;
+        }
+
+        .reject-btn:hover {
+            background: #ffe0e0;
+        }
+
+
+        /* ================= APPROVED / REJECTED ================= */
+
+        .completed {
+            margin-top: 18px;
+
+            padding-top: 15px;
+
+            border-top: 1px solid #edf2f4;
+
+            text-align: center;
+
+            color: #7d8e95;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        /* ================= EMPTY ================= */
+
+        .empty-card {
+            background: white;
+
+            border: 1px solid #e1eaed;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            box-shadow:
+                0 6px 20px rgba(30,70,90,0.05);
+        }
+
+        .empty-icon {
+            width: 75px;
+            height: 75px;
+
+            background: #e8f7fb;
+
+            color: #087fa8;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 18px;
+
+            font-size: 32px;
+        }
+
+        .empty-card h3 {
+            color: #385461;
+
+            font-size: 18px;
+
+            margin-bottom: 7px;
+        }
+
+        .empty-card p {
+            color: #84959e;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 30px;
+
+            color: #9aa8ae;
+
+            font-size: 11px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 750px) {
+
+            .main {
+                width: 94%;
+            }
+
+            .appointment-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .logo h2 {
+                font-size: 18px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            .calendar-icon {
+                display: none;
+            }
+
+            .appointment-card {
+                padding: 18px;
+            }
+
+            .card-top {
+                align-items: flex-start;
+
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <a
+        href="{% url 'doctor_dashboard' %}"
+        class="dashboard-btn">
+
+        ← Doctor Dashboard
+
+    </a>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- PAGE TITLE -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                My Appointments
+            </h1>
+
+            <p>
+                Review and manage your patient appointments.
+            </p>
+
+        </div>
+
+
+        <div class="calendar-icon">
+            📅
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= APPOINTMENTS ================= -->
+
+    {% if appointments %}
+
+
+        <div class="appointment-grid">
+
+
+            {% for appointment in appointments %}
+
+
+                <div class="appointment-card">
+
+
+                    <!-- PATIENT + STATUS -->
+
+                    <div class="card-top">
+
+
+                        <div class="patient-box">
+
+                            <div class="patient-icon">
+                                👤
+                            </div>
+
+
+                            <div class="patient-info">
+
+                                <strong>
+                                    {{ appointment.patient }}
+                                </strong>
+
+                                <span>
+                                    Patient
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- STATUS -->
+
+                        {% if appointment.status == "Pending" %}
+
+                            <span class="status pending">
+                                ● Pending
+                            </span>
+
+                        {% elif appointment.status == "Approved" %}
+
+                            <span class="status approved">
+                                ✓ Approved
+                            </span>
+
+                        {% elif appointment.status == "Rejected" %}
+
+                            <span class="status rejected">
+                                ✕ Rejected
+                            </span>
+
+                        {% else %}
+
+                            <span class="status">
+                                {{ appointment.status }}
+                            </span>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+
+                    <!-- DETAILS -->
+
+                    <div class="details">
+
+
+                        <div class="detail-row">
+
+                            <span class="label">
+                                Doctor
+                            </span>
+
+                            <span class="value doctor-value">
+                                👨‍⚕️ {{ appointment.doctor }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span class="label">
+                                Appointment Date
+                            </span>
+
+                            <span class="value">
+                                📅 {{ appointment.appointment_date }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-row">
+
+                            <span class="label">
+                                Appointment Time
+                            </span>
+
+                            <span class="value">
+                                🕐 {{ appointment.appointment_time }}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ACTIONS -->
+
+                    {% if appointment.status == "Pending" %}
+
+
+                        <div class="actions">
+
+
+                            <a
+                                href="{% url 'approve_appointment' appointment.id %}"
+                                class="approve-btn">
+
+                                ✓ Approve
+
+                            </a>
+
+
+                            <a
+                                href="{% url 'reject_appointment' appointment.id %}"
+                                class="reject-btn">
+
+                                ✕ Reject
+
+                            </a>
+
+
+                        </div>
+
+
+                    {% else %}
+
+
+                        <div class="completed">
+
+                            Appointment {{ appointment.status }}
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <!-- NO APPOINTMENTS -->
+
+        <div class="empty-card">
+
+            <div class="empty-icon">
+                📅
+            </div>
+
+            <h3>
+                No Appointments Found
+            </h3>
+
+            <p>
+                You currently have no patient appointments.
+            </p>
+
+        </div>
+
+
+    {% endif %}
+
+
+
+    <div class="footer">
+
+        DentalCare • Doctor Appointment Management
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

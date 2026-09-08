@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | Add Doctor</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f3f8fa;
+            color: #263b49;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            border-bottom: 1px solid #e3ecef;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            background: #079bd2;
+            color: white;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            color: #153e52;
+            font-size: 21px;
+        }
+
+        .logo span {
+            color: #079bd2;
+        }
+
+        .doctor-list-link {
+            text-decoration: none;
+
+            color: #087fa8;
+
+            background: #eaf7fb;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .doctor-list-link:hover {
+            background: #d9f1f8;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            min-height: calc(100vh - 72px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 40px 20px;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .doctor-card {
+            width: 900px;
+
+            max-width: 100%;
+
+            background: white;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            display: grid;
+
+            grid-template-columns: 35% 65%;
+
+            box-shadow:
+                0 12px 35px
+                rgba(30,70,90,0.10);
+        }
+
+
+        /* ================= LEFT ================= */
+
+        .left-panel {
+            background: linear-gradient(
+                145deg,
+                #087fa8,
+                #096c8e
+            );
+
+            color: white;
+
+            padding: 45px 35px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .left-panel::before {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.07);
+
+            right: -100px;
+            top: -70px;
+        }
+
+        .left-panel::after {
+            content: "";
+
+            position: absolute;
+
+            width: 170px;
+            height: 170px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.06);
+
+            left: -90px;
+            bottom: -70px;
+        }
+
+        .doctor-icon {
+            width: 72px;
+            height: 72px;
+
+            background: white;
+
+            color: #087fa8;
+
+            border-radius: 16px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 35px;
+
+            margin-bottom: 25px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .left-panel h1 {
+            font-size: 27px;
+
+            line-height: 1.3;
+
+            margin-bottom: 14px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .left-panel > p {
+            color: #dff5fb;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .features {
+            margin-top: 30px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 16px;
+        }
+
+        .feature-icon {
+            width: 26px;
+            height: 26px;
+
+            background: rgba(255,255,255,0.15);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 11px;
+        }
+
+        .feature span {
+            color: #e4f7fb;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= RIGHT ================= */
+
+        .right-panel {
+            padding: 42px 45px;
+        }
+
+        .form-heading {
+            border-bottom: 1px solid #edf2f4;
+
+            padding-bottom: 18px;
+
+            margin-bottom: 23px;
+        }
+
+        .form-heading h2 {
+            color: #153e52;
+
+            font-size: 23px;
+
+            margin-bottom: 6px;
+        }
+
+        .form-heading p {
+            color: #87979f;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= MESSAGES ================= */
+
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            background: #e9f8ef;
+
+            border: 1px solid #ccebd7;
+
+            color: #267846;
+
+            padding: 11px 14px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        form p {
+            margin-bottom: 17px;
+        }
+
+        form label {
+            display: block;
+
+            color: #3d5662;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+
+            padding: 12px 13px;
+
+            border: 1px solid #d6e2e7;
+
+            border-radius: 8px;
+
+            background: #fbfdfe;
+
+            color: #334d5a;
+
+            font-size: 13px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            border-color: #079bd2;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(7,155,210,0.09);
+        }
+
+        form textarea {
+            min-height: 90px;
+
+            resize: vertical;
+        }
+
+        .errorlist {
+            list-style: none;
+
+            color: #d23838;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .add-button {
+            width: 100%;
+
+            height: 49px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #087fa8;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+            transition: 0.2s;
+        }
+
+        .add-button:hover {
+            background: #066d91;
+
+            box-shadow:
+                0 6px 15px
+                rgba(8,127,168,0.18);
+        }
+
+
+        /* ================= BACK ================= */
+
+        .back-link {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #71848d;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+        .back-link:hover {
+            color: #087fa8;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 750px) {
+
+            .doctor-card {
+                grid-template-columns: 1fr;
+            }
+
+            .left-panel {
+                padding: 30px;
+            }
+
+            .features {
+                display: none;
+            }
+
+            .right-panel {
+                padding: 32px 28px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .logo h2 {
+                font-size: 19px;
+            }
+
+            .doctor-list-link {
+                padding: 9px 12px;
+            }
+
+            .right-panel {
+                padding: 28px 20px;
+            }
+
+            .left-panel h1 {
+                font-size: 24px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <a
+        href="{% url 'doctor_list' %}"
+        class="doctor-list-link">
+
+        ← View Doctors
+
+    </a>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <div class="doctor-card">
+
+
+        <!-- ================= LEFT PANEL ================= -->
+
+        <div class="left-panel">
+
+
+            <div class="doctor-icon">
+                👨‍⚕️
+            </div>
+
+
+            <h1>
+                Add New Doctor
+            </h1>
+
+
+            <p>
+                Register a new doctor in your
+                DentalCare clinic management system.
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <span>
+                        Add doctor information
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <span>
+                        Manage professional details
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <span>
+                        Secure clinic management
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <span>
+                        Doctor access management
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= FORM PANEL ================= -->
+
+        <div class="right-panel">
+
+
+            <div class="form-heading">
+
+                <h2>
+                    Doctor Information
+                </h2>
+
+                <p>
+                    Enter the doctor's details below
+                </p>
+
+            </div>
+
+
+
+            <!-- Messages -->
+
+            {% if messages %}
+
+                <div class="messages">
+
+                    {% for message in messages %}
+
+                        <div class="message">
+
+                            ✓ &nbsp; {{ message }}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- Form -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+
+                <button
+                    type="submit"
+                    class="add-button">
+
+                    + Add Doctor
+
+                </button>
+
+            </form>
+
+
+            <a
+                href="{% url 'doctor_list' %}"
+                class="back-link">
+
+                View All Doctors →
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

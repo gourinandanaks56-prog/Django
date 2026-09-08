@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | Doctor Profile</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8fa;
+            color: #263b49;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            border-bottom: 1px solid #e5edf1;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            border-radius: 10px;
+
+            background: #079bd2;
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            color: #153e52;
+            font-size: 21px;
+        }
+
+        .logo span {
+            color: #079bd2;
+        }
+
+        .dashboard-link {
+            text-decoration: none;
+
+            color: #087fa8;
+
+            background: #eaf7fb;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .dashboard-link:hover {
+            background: #d9f1f8;
+        }
+
+
+        /* ================= PAGE ================= */
+
+        .page {
+            width: 90%;
+            max-width: 1050px;
+
+            margin: 40px auto;
+        }
+
+
+        /* ================= TITLE ================= */
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            color: #153e52;
+
+            font-size: 28px;
+
+            margin-bottom: 6px;
+        }
+
+        .page-title p {
+            color: #82939c;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= PROFILE LAYOUT ================= */
+
+        .profile-layout {
+            display: grid;
+
+            grid-template-columns: 280px 1fr;
+
+            gap: 22px;
+        }
+
+
+        /* ================= PROFILE SIDE ================= */
+
+        .profile-side {
+            background: #087fa8;
+
+            border-radius: 14px;
+
+            padding: 30px 22px;
+
+            color: white;
+
+            text-align: center;
+
+            height: fit-content;
+        }
+
+        .doctor-avatar {
+            width: 90px;
+            height: 90px;
+
+            margin: 0 auto 18px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 45px;
+        }
+
+        .profile-side h2 {
+            font-size: 19px;
+
+            margin-bottom: 6px;
+        }
+
+        .profile-side .role {
+            color: #cceef7;
+
+            font-size: 12px;
+
+            margin-bottom: 25px;
+        }
+
+        .profile-line {
+            height: 1px;
+
+            background: rgba(255,255,255,0.2);
+
+            margin: 20px 0;
+        }
+
+        .profile-side p {
+            color: #dff5fa;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* ================= FORM CARD ================= */
+
+        .profile-card {
+            background: white;
+
+            border: 1px solid #e3ecef;
+
+            border-radius: 14px;
+
+            padding: 32px 38px;
+
+            box-shadow: 0 5px 22px rgba(30,70,90,0.06);
+        }
+
+        .form-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding-bottom: 18px;
+
+            margin-bottom: 22px;
+
+            border-bottom: 1px solid #edf2f4;
+        }
+
+        .form-header h2 {
+            color: #153e52;
+
+            font-size: 20px;
+        }
+
+        .form-header span {
+            color: #8a9ba3;
+
+            font-size: 11px;
+        }
+
+
+        /* ================= MESSAGES ================= */
+
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 11px 14px;
+
+            background: #e9f8ef;
+
+            color: #287a48;
+
+            border: 1px solid #ccebd8;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+        }
+
+
+        /* ================= DJANGO FORM ================= */
+
+        form p {
+            margin-bottom: 17px;
+        }
+
+        form label {
+            display: block;
+
+            color: #405661;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+
+            padding: 12px 13px;
+
+            border: 1px solid #d7e3e8;
+
+            border-radius: 7px;
+
+            background: #fbfdfe;
+
+            color: #344d5a;
+
+            font-size: 13px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            border-color: #079bd2;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px rgba(7,155,210,0.09);
+        }
+
+        form textarea {
+            min-height: 90px;
+
+            resize: vertical;
+        }
+
+        .errorlist {
+            list-style: none;
+
+            color: #d33c3c;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .button-row {
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 8px;
+        }
+
+        .update-btn {
+            flex: 1;
+
+            height: 47px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #087fa8;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .update-btn:hover {
+            background: #066d91;
+        }
+
+        .cancel-btn {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-decoration: none;
+
+            padding: 0 22px;
+
+            height: 47px;
+
+            border-radius: 7px;
+
+            border: 1px solid #d8e4e8;
+
+            color: #687e88;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .cancel-btn:hover {
+            background: #f5f9fa;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 750px) {
+
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-side {
+                display: flex;
+
+                align-items: center;
+
+                gap: 18px;
+
+                text-align: left;
+            }
+
+            .doctor-avatar {
+                margin: 0;
+                flex-shrink: 0;
+            }
+
+            .profile-line,
+            .profile-side p {
+                display: none;
+            }
+
+            .profile-side .role {
+                margin-bottom: 0;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .page {
+                width: 94%;
+                margin-top: 25px;
+            }
+
+            .profile-card {
+                padding: 25px 20px;
+            }
+
+            .profile-side {
+                padding: 22px;
+            }
+
+            .button-row {
+                flex-direction: column;
+            }
+
+            .cancel-btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <a
+        href="{% url 'doctor_dashboard' %}"
+        class="dashboard-link">
+
+        ← Dashboard
+
+    </a>
+
+</header>
+
+
+
+<!-- ================= PAGE ================= -->
+
+<div class="page">
+
+
+    <div class="page-title">
+
+        <h1>
+            Doctor Profile
+        </h1>
+
+        <p>
+            Manage your professional and personal information
+        </p>
+
+    </div>
+
+
+
+    <div class="profile-layout">
+
+
+        <!-- ================= PROFILE SIDE ================= -->
+
+        <div class="profile-side">
+
+            <div class="doctor-avatar">
+                👨‍⚕️
+            </div>
+
+            <div>
+
+                <h2>
+                    Dr. {{ user.username }}
+                </h2>
+
+                <div class="role">
+                    Dental Specialist
+                </div>
+
+                <div class="profile-line"></div>
+
+                <p>
+                    Keep your profile information
+                    updated so patients can easily
+                    identify you.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= FORM ================= -->
+
+        <div class="profile-card">
+
+
+            <div class="form-header">
+
+                <h2>
+                    Personal Information
+                </h2>
+
+                <span>
+                    Update your details
+                </span>
+
+            </div>
+
+
+
+            <!-- Messages -->
+
+            {% if messages %}
+
+                <div class="messages">
+
+                    {% for message in messages %}
+
+                        <div class="message">
+                            ✓ &nbsp; {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- Form -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+
+                <div class="button-row">
+
+                    <button
+                        type="submit"
+                        class="update-btn">
+
+                        Update Profile
+
+                    </button>
+
+
+                    <a
+                        href="{% url 'doctor_dashboard' %}"
+                        class="cancel-btn">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

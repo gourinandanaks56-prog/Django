@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | Give Feedback</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f3f9fb;
+            color: #263b49;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            background: #079bd2;
+
+            color: white;
+
+            border-radius: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+
+            font-weight: bold;
+        }
+
+
+        .logo h2 {
+            color: #153e52;
+
+            font-size: 21px;
+        }
+
+
+        .logo span {
+            color: #079bd2;
+        }
+
+
+        .dashboard-btn {
+            text-decoration: none;
+
+            color: #087fa8;
+
+            background: #eaf7fb;
+
+            padding: 10px 18px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .dashboard-btn:hover {
+            background: #d9f1f8;
+        }
+
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            min-height: calc(100vh - 72px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 45px 20px;
+        }
+
+
+
+        /* ================= FEEDBACK CARD ================= */
+
+        .feedback-card {
+
+            width: 850px;
+
+            background: white;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            box-shadow:
+                0 15px 45px
+                rgba(20,80,105,0.12);
+        }
+
+
+
+        /* ================= LEFT ================= */
+
+        .feedback-info {
+
+            width: 38%;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #079bd2,
+                    #087cae
+                );
+
+            color: white;
+
+            padding: 45px 35px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .feedback-icon {
+
+            width: 75px;
+            height: 75px;
+
+            background: white;
+
+            color: #079bd2;
+
+            border-radius: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 36px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .feedback-info h1 {
+
+            font-size: 29px;
+
+            margin-bottom: 14px;
+        }
+
+
+        .feedback-info > p {
+
+            color: #e2f7ff;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+
+        .benefits p {
+
+            color: white;
+
+            font-size: 13px;
+
+            margin: 13px 0;
+        }
+
+
+
+        /* ================= RIGHT ================= */
+
+        .feedback-form {
+
+            width: 62%;
+
+            padding: 45px 50px;
+        }
+
+
+        .feedback-form h2 {
+
+            color: #153e52;
+
+            font-size: 27px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .subtitle {
+
+            color: #84959e;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+
+        /* ================= DJANGO FORM ================= */
+
+        form p {
+
+            margin-bottom: 18px;
+        }
+
+
+        form label {
+
+            display: block;
+
+            color: #37474f;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+
+        form input,
+        form select,
+        form textarea {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #d5e5eb;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            background: #fbfdff;
+
+            color: #37474f;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+
+            border-color: #079bd2;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(7,155,210,0.10);
+        }
+
+
+        form textarea {
+
+            min-height: 130px;
+
+            resize: vertical;
+        }
+
+
+
+        /* ================= ERRORS ================= */
+
+        .errorlist {
+
+            list-style: none;
+
+            color: #d32f2f;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+
+
+        /* ================= MESSAGES ================= */
+
+        .messages {
+
+            margin-bottom: 18px;
+        }
+
+
+        .message {
+
+            background: #e9f8ef;
+
+            border: 1px solid #c8ead4;
+
+            color: #277447;
+
+            padding: 11px 14px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+
+
+        /* ================= BUTTON ================= */
+
+        .submit-btn {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #079bd2,
+                    #087cae
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 4px;
+
+            transition: 0.25s;
+        }
+
+
+        .submit-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(7,155,210,0.25);
+        }
+
+
+
+        /* ================= BACK ================= */
+
+        .back-link {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #087fa8;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .back-link:hover {
+
+            text-decoration: underline;
+        }
+
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            .feedback-card {
+
+                width: 95%;
+            }
+
+            .feedback-info {
+
+                display: none;
+            }
+
+            .feedback-form {
+
+                width: 100%;
+
+                padding: 40px 35px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .header {
+
+                padding: 0 20px;
+            }
+
+            .logo h2 {
+
+                font-size: 18px;
+            }
+
+            .feedback-form {
+
+                padding: 30px 22px;
+            }
+
+            .feedback-form h2 {
+
+                font-size: 23px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <a
+        href="{% url 'patient_dashboard' %}"
+        class="dashboard-btn">
+
+        ← Dashboard
+
+    </a>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <div class="feedback-card">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="feedback-info">
+
+
+            <div class="feedback-icon">
+                💬
+            </div>
+
+
+            <h1>
+                Your Feedback Matters
+            </h1>
+
+
+            <p>
+                Share your experience with DentalCare.
+                Your feedback helps us improve our
+                services and provide better dental care.
+            </p>
+
+
+            <div class="benefits">
+
+                <p>
+                    ✓ Help us improve our services
+                </p>
+
+                <p>
+                    ✓ Share your treatment experience
+                </p>
+
+                <p>
+                    ✓ Help other patients
+                </p>
+
+                <p>
+                    ✓ Better dental care for everyone
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="feedback-form">
+
+
+            <h2>
+                Give Feedback
+            </h2>
+
+
+            <p class="subtitle">
+                Tell us about your DentalCare experience.
+            </p>
+
+
+
+            <!-- MESSAGES -->
+
+            {% if messages %}
+
+                <div class="messages">
+
+                    {% for message in messages %}
+
+                        <div class="message">
+
+                            ✓ {{ message }}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- FORM -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+
+                <button
+                    type="submit"
+                    class="submit-btn">
+
+                    💬 Submit Feedback
+
+                </button>
+
+            </form>
+
+
+
+            <a
+                href="{% url 'patient_dashboard' %}"
+                class="back-link">
+
+                ← Back to Patient Dashboard
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare | Reports</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8fa;
+            color: #263b49;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            border-bottom: 1px solid #e3ecef;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            background: #079bd2;
+
+            color: white;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+
+        .logo h2 {
+            color: #153e52;
+            font-size: 21px;
+        }
+
+
+        .logo span {
+            color: #079bd2;
+        }
+
+
+        .back-btn {
+            text-decoration: none;
+
+            color: #087fa8;
+
+            background: #eaf7fb;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .back-btn:hover {
+            background: #d9f1f8;
+        }
+
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            width: 90%;
+
+            max-width: 1150px;
+
+            margin: 40px auto;
+        }
+
+
+
+        /* ================= TITLE ================= */
+
+        .page-heading {
+            margin-bottom: 28px;
+        }
+
+
+        .page-heading h1 {
+            color: #153e52;
+
+            font-size: 29px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .page-heading p {
+            color: #84959e;
+
+            font-size: 13px;
+        }
+
+
+
+        /* ================= TOP CARDS ================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 17px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e1eaed;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            transition: 0.2s;
+        }
+
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(30,70,90,0.08);
+        }
+
+
+        .stat-top {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+        }
+
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+
+            background: #e8f7fb;
+
+            color: #087fa8;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+        }
+
+
+        .stat-label {
+            color: #899aa2;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            letter-spacing: 0.4px;
+        }
+
+
+        .stat-number {
+            color: #153e52;
+
+            font-size: 27px;
+
+            font-weight: 700;
+        }
+
+
+
+        /* ================= REPORT CARD ================= */
+
+        .report-card {
+            background: white;
+
+            border: 1px solid #e1eaed;
+
+            border-radius: 13px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px
+                rgba(30,70,90,0.06);
+        }
+
+
+        .report-header {
+            padding: 20px 22px;
+
+            border-bottom: 1px solid #e8eef0;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .report-header-icon {
+            width: 40px;
+            height: 40px;
+
+            background: #e8f7fb;
+
+            color: #087fa8;
+
+            border-radius: 8px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 19px;
+        }
+
+
+        .report-header h2 {
+            color: #153e52;
+
+            font-size: 18px;
+        }
+
+
+        .report-header p {
+            color: #899aa2;
+
+            font-size: 11px;
+
+            margin-top: 3px;
+        }
+
+
+
+        /* ================= TABLE ================= */
+
+        .report-table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+
+        .report-table th {
+            background: #f5fafc;
+
+            color: #617984;
+
+            text-align: left;
+
+            padding: 15px 20px;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+        }
+
+
+        .report-table td {
+            padding: 17px 20px;
+
+            border-bottom: 1px solid #edf2f4;
+
+            font-size: 13px;
+        }
+
+
+        .report-table tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        .report-table tbody tr:hover {
+            background: #f9fcfd;
+        }
+
+
+        .report-name {
+            color: #405b66;
+
+            font-weight: 600;
+        }
+
+
+        .count {
+            display: inline-block;
+
+            min-width: 42px;
+
+            text-align: center;
+
+            background: #eaf7fb;
+
+            color: #087fa8;
+
+            padding: 7px 11px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            font-size: 12px;
+        }
+
+
+
+        /* ================= STATUS ================= */
+
+        .status {
+            display: inline-block;
+
+            padding: 6px 11px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        .approved {
+            background: #e9f8ef;
+
+            color: #25834a;
+        }
+
+
+        .pending {
+            background: #fff7df;
+
+            color: #a47700;
+        }
+
+
+        .rejected {
+            background: #fff0f0;
+
+            color: #c23b3b;
+        }
+
+
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+
+            color: #9aa8ae;
+
+            font-size: 11px;
+
+            margin-top: 25px;
+        }
+
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 950px) {
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .header {
+                padding: 0 20px;
+            }
+
+            .main {
+                width: 94%;
+
+                margin: 25px auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+
+            .report-card {
+                overflow-x: auto;
+            }
+
+            .report-table {
+                min-width: 600px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✚
+        </div>
+
+        <h2>
+            Dental<span>Care</span>
+        </h2>
+
+    </div>
+
+
+    <a
+        href="{% url 'admin_dashboard' %}"
+        class="back-btn">
+
+        ← Dashboard
+
+    </a>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TITLE -->
+
+    <div class="page-heading">
+
+        <h1>
+            Reports & Analytics
+        </h1>
+
+        <p>
+            Overview of DentalCare clinic activities and statistics
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= STAT CARDS ================= -->
+
+    <div class="stats-grid">
+
+
+        <!-- DOCTORS -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    👨‍⚕️
+                </div>
+
+                <span class="stat-label">
+                    DOCTORS
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ doctor_count }}
+            </div>
+
+        </div>
+
+
+
+        <!-- PATIENTS -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <span class="stat-label">
+                    PATIENTS
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ patient_count }}
+            </div>
+
+        </div>
+
+
+
+        <!-- APPOINTMENTS -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    📅
+                </div>
+
+                <span class="stat-label">
+                    APPOINTMENTS
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ appointment_count }}
+            </div>
+
+        </div>
+
+
+
+        <!-- SERVICES -->
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div class="stat-icon">
+                    🦷
+                </div>
+
+                <span class="stat-label">
+                    SERVICES
+                </span>
+
+            </div>
+
+            <div class="stat-number">
+                {{ service_count }}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= REPORT TABLE ================= -->
+
+    <div class="report-card">
+
+
+        <div class="report-header">
+
+            <div class="report-header-icon">
+                📊
+            </div>
+
+            <div>
+
+                <h2>
+                    Clinic Reports
+                </h2>
+
+                <p>
+                    Detailed summary of clinic records
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <table class="report-table">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Report
+                    </th>
+
+                    <th>
+                        Count
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                <tr>
+
+                    <td class="report-name">
+                        Total Doctors
+                    </td>
+
+                    <td>
+                        <span class="count">
+                            {{ doctor_count }}
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="report-name">
+                        Total Patients
+                    </td>
+
+                    <td>
+                        <span class="count">
+                            {{ patient_count }}
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="report-name">
+                        Total Appointments
+                    </td>
+
+                    <td>
+                        <span class="count">
+                            {{ appointment_count }}
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="report-name">
+                        Approved Appointments
+                    </td>
+
+                    <td>
+                        <span class="status approved">
+                            ✓ {{ approved_count }} Approved
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="report-name">
+                        Pending Appointments
+                    </td>
+
+                    <td>
+                        <span class="status pending">
+                            ◷ {{ pending_count }} Pending
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="report-name">
+                        Rejected Appointments
+                    </td>
+
+                    <td>
+                        <span class="status rejected">
+                            ✕ {{ rejected_count }} Rejected
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="report-name">
+                        Total Services
+                    </td>
+
+                    <td>
+                        <span class="count">
+                            {{ service_count }}
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="report-name">
+                        Total Feedback
+                    </td>
+
+                    <td>
+                        <span class="count">
+                            {{ feedback_count }}
+                        </span>
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+
+    <div class="footer">
+
+        DentalCare Admin Panel • Clinic Management Reports
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

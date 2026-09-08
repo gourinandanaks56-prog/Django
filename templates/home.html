@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DentalCare Hospital</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5fbff;
+            color: #243447;
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            background: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: #0d9fe8;
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            color: #123b56;
+            font-size: 23px;
+        }
+
+        .logo span {
+            color: #0d9fe8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #455a64;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #0d9fe8;
+        }
+
+        .login-btn {
+            background: #0d9fe8;
+            color: white !important;
+            padding: 11px 23px;
+            border-radius: 25px;
+        }
+
+        .login-btn:hover {
+            background: #087fba;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 570px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 8%;
+            background: linear-gradient(120deg, #eaf8ff, #ffffff);
+        }
+
+        .hero-content {
+            width: 52%;
+        }
+
+        .small-title {
+            color: #0d9fe8;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            line-height: 1.15;
+            color: #123b56;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #0d9fe8;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #607d8b;
+            max-width: 580px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .primary-btn {
+            text-decoration: none;
+            background: #0d9fe8;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .primary-btn:hover {
+            background: #087fba;
+        }
+
+        .secondary-btn {
+            text-decoration: none;
+            border: 2px solid #0d9fe8;
+            color: #0d9fe8;
+            padding: 12px 27px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        .secondary-btn:hover {
+            background: #0d9fe8;
+            color: white;
+        }
+
+        /* Hero Doctor Illustration */
+        .hero-image {
+            width: 42%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .doctor-card {
+            width: 350px;
+            height: 370px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 15px 40px rgba(13,159,232,0.18);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .doctor-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #dff4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 85px;
+        }
+
+        .doctor-card h3 {
+            margin-top: 20px;
+            color: #123b56;
+            font-size: 22px;
+        }
+
+        .doctor-card p {
+            margin-top: 8px;
+            color: #78909c;
+        }
+
+        /* Services */
+        .services {
+            padding: 70px 8%;
+            background: white;
+            text-align: center;
+        }
+
+        .section-title {
+            color: #123b56;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: #78909c;
+            margin-bottom: 40px;
+        }
+
+        .service-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .service-card {
+            padding: 30px 25px;
+            background: #f7fcff;
+            border-radius: 18px;
+            border: 1px solid #e3f3fa;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .service-icon {
+            width: 65px;
+            height: 65px;
+            margin: auto;
+            border-radius: 50%;
+            background: #dff4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .service-card h3 {
+            margin: 18px 0 10px;
+            color: #123b56;
+        }
+
+        .service-card p {
+            color: #78909c;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* CTA */
+        .cta {
+            margin: 60px 8%;
+            padding: 45px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #0d9fe8, #087fba);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cta h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .cta p {
+            opacity: 0.9;
+        }
+
+        .register-btn {
+            background: white;
+            color: #087fba;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #123b56;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            color: #c5d7e0;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 5%;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                margin: 0 auto 25px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                width: 100%;
+                margin-top: 40px;
+            }
+
+            .service-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .nav-links a:not(.login-btn) {
+                display: none;
+            }
+
+            .doctor-card {
+                width: 290px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">✚</div>
+            <h2>Dental<span>Care</span></h2>
+        </div>
+
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#services">Services</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+
+            <a href="{% url 'login' %}" class="login-btn">
+                Login
+            </a>
+        </div>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                WELCOME TO DENTALCARE
+            </div>
+
+            <h1>
+                Your Smile,<br>
+                <span>Our Care.</span>
+            </h1>
+
+            <p>
+                We provide professional dental care with modern
+                technology and experienced doctors. Your healthy
+                smile is our priority.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{% url 'patient_register' %}"
+                   class="primary-btn">
+                    Register as Patient
+                </a>
+
+                <a href="{% url 'login' %}"
+                   class="secondary-btn">
+                    Patient Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-image">
+
+            <div class="doctor-card">
+
+                <div class="doctor-circle">
+                    🦷
+                </div>
+
+                <h3>Expert Dental Care</h3>
+
+                <p>
+                    Professional & Trusted Doctors
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Services -->
+    <section class="services" id="services">
+
+        <h2 class="section-title">
+            Our Dental Services
+        </h2>
+
+        <p class="section-subtitle">
+            Complete dental care for you and your family
+        </p>
+
+
+        <div class="service-container">
+
+            <div class="service-card">
+
+                <div class="service-icon">🦷</div>
+
+                <h3>General Dentistry</h3>
+
+                <p>
+                    Complete dental checkups and
+                    preventive oral care.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">😁</div>
+
+                <h3>Cosmetic Dentistry</h3>
+
+                <p>
+                    Improve your smile with modern
+                    cosmetic dental treatments.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">🩺</div>
+
+                <h3>Expert Consultation</h3>
+
+                <p>
+                    Get professional consultation from
+                    experienced dental specialists.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Call To Action -->
+    <section class="cta">
+
+        <div>
+            <h2>Ready to take care of your smile?</h2>
+
+            <p>
+                Register today and manage your dental appointments easily.
+            </p>
+        </div>
+
+        <a href="{% url 'patient_register' %}"
+           class="register-btn">
+            Register Now
+        </a>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 DentalCare Hospital. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>
